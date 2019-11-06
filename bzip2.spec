@@ -1,6 +1,6 @@
 Name:		bzip2
-Version:	1.0.6
-Release:	33
+Version:	1.0.8
+Release:	1
 Summary:	A high-quality data compressor
 
 License:	BSD
@@ -8,12 +8,8 @@ URL:		https://www.sourceware.org/bzip2/
 Source0:	https://sourceware.org/pub/bzip2/%{name}-%{version}.tar.gz
 Source1:	bzip2.pc
 
-Patch0:		0001-bzip2-1.0.4-saneso.patch
-Patch1:		0002-bzip2-1.0.4-cflags.patch
-Patch2:		0003-bzip2-1.0.4-bzip2recover.patch
-Patch3:		0004-bzip2-ldflags.patch
-Patch4:		0005-set-out-file-to-null.patch
-Patch5:		0006-CVE-2019-12900.patch
+Patch0:		0001-add-compile-option.patch
+Patch1:		0002-CVE-2019-12900.patch
 
 BuildRequires:	gcc
 
@@ -94,6 +90,9 @@ make check
 %{_mandir}/man1/b*.1.gz
 
 %changelog
+* Sat Oct 19 2019 openEuler Builteam <buildteam@openeuler.org> - 1.0.8-1
+- update bzip2
+
 * Tue Sep 24 2019 shenyangyang<shenyangyang4@huawei.com> - 1.0.6-33
 - Type:enhancement
 - ID:NA
