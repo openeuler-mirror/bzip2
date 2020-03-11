@@ -1,6 +1,6 @@
 Name:		bzip2
 Version:	1.0.8
-Release:	1
+Release:	2
 Summary:	A high-quality data compressor
 
 License:	BSD
@@ -57,7 +57,7 @@ ln -fs bzgrep %{buildroot}%{_bindir}/bzfgrep
 ln -fs bzmore %{buildroot}%{_bindir}/bzless
 install -m 0755 *.so* %{buildroot}%{_libdir}
 ln -s libbz2.so.%{version} %{buildroot}%{_libdir}/libbz2.so.1
-ln -s libbz2.so.%{version} %{buildroot}%{_libdir}/libbz2.so
+ln -s libbz2.so.1 %{buildroot}%{_libdir}/libbz2.so
 cp %{SOURCE1} .
 sed -i "s@^libdir=@libdir=%{_libdir}@" bzip2.pc
 mkdir -p %{buildroot}%{_libdir}/pkgconfig
@@ -90,6 +90,9 @@ make check
 %{_mandir}/man1/b*.1.gz
 
 %changelog
+* Wed Mar 11 2020 yangjian<yangjian79.huawei.com> - 1.0.8-2
+- Fix dependency
+
 * Sat Oct 19 2019 openEuler Builteam <buildteam@openeuler.org> - 1.0.8-1
 - update bzip2
 
