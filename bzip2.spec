@@ -1,6 +1,6 @@
 Name:		bzip2
 Version:	1.0.8
-Release:	2
+Release:	3
 Summary:	A high-quality data compressor
 
 License:	BSD
@@ -11,7 +11,7 @@ Source1:	bzip2.pc
 Patch0:		0001-add-compile-option.patch
 Patch1:		0002-CVE-2019-12900.patch
 
-BuildRequires:	gcc
+BuildRequires:	gcc gdb
 
 Provides:       bzip2-libs
 Obsoletes:      bzip2-libs
@@ -37,7 +37,7 @@ header files for bzip2
 %autosetup -n %{name}-%{version} -p1
 
 %build
-%make_build -f Makefile-libbz2_so "CFLAGS=%{optflags} -Winline -D_FILE_OFFSET_BITS=64"
+%make_build -f Makefile-libbz2_so "CFLAGS=%{optflags} -Winline -fpic -fPIC -D_FILE_OFFSET_BITS=64"
 %make_build "CFLAGS=%{optflags} -fpic -fPIC -Winline -D_FILE_OFFSET_BITS=64"
 
 %install
@@ -90,6 +90,9 @@ make check
 %{_mandir}/man1/b*.1.gz
 
 %changelog
+* Sat Mar 21 2020 chengquan<chengquan3@huawei.com> - 1.0.8-3
+- Add fPIC option to make the self-compiled environment build normally
+
 * Wed Mar 11 2020 yangjian<yangjian79.huawei.com> - 1.0.8-2
 - Fix dependency
 
