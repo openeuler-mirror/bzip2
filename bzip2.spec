@@ -1,6 +1,6 @@
 Name:		bzip2
 Version:	1.0.8
-Release:	3
+Release:	4
 Summary:	A high-quality data compressor
 
 License:	BSD
@@ -11,7 +11,7 @@ Source1:	bzip2.pc
 Patch0:		0001-add-compile-option.patch
 Patch1:		0002-CVE-2019-12900.patch
 
-BuildRequires:	gcc gdb
+BuildRequires:	gcc 
 
 Provides:       bzip2-libs
 Obsoletes:      bzip2-libs
@@ -90,6 +90,9 @@ make check
 %{_mandir}/man1/b*.1.gz
 
 %changelog
+* Thu Jul 22 2021 wuchaochao <wuchaochao4@huawei.com> - 1.0.8-4
+- Remove BuildRequires gdb
+
 * Sat Mar 21 2020 chengquan<chengquan3@huawei.com> - 1.0.8-3
 - Add fPIC option to make the self-compiled environment build normally
 
