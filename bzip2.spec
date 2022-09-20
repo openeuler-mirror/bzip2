@@ -1,6 +1,6 @@
 Name:		bzip2
 Version:	1.0.8
-Release:	4
+Release:	5
 Summary:	A high-quality data compressor
 
 License:	BSD
@@ -55,7 +55,7 @@ ln -fs bzdiff %{buildroot}%{_bindir}/bzcmp
 ln -fs bzgrep %{buildroot}%{_bindir}/bzegrep
 ln -fs bzgrep %{buildroot}%{_bindir}/bzfgrep
 ln -fs bzmore %{buildroot}%{_bindir}/bzless
-install -m 0755 *.so* %{buildroot}%{_libdir}
+install -m 0755 libbz2.so.%{version}  %{buildroot}%{_libdir}
 ln -s libbz2.so.%{version} %{buildroot}%{_libdir}/libbz2.so.1
 ln -s libbz2.so.1 %{buildroot}%{_libdir}/libbz2.so
 cp %{SOURCE1} .
@@ -90,6 +90,9 @@ make check
 %{_mandir}/man1/b*.1.gz
 
 %changelog
+* Tue Sep 20 2022 zhoupengcheng <zhoupengcheng11@huawei.com> - 1.0.8-5
+- Delete redundant .so files 
+
 * Thu Jul 22 2021 wuchaochao <wuchaochao4@huawei.com> - 1.0.8-4
 - Remove BuildRequires gdb
 
