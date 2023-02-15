@@ -1,6 +1,6 @@
 Name:		bzip2
 Version:	1.0.8
-Release:	6
+Release:	7
 Summary:	A high-quality data compressor
 
 License:	BSD
@@ -91,6 +91,9 @@ make check
 %{_mandir}/man1/b*.1.gz
 
 %changelog
+* Wed Feb 15 2023 xiasenlin <xiasenlin1@huawei.com> - 1.0.8-7
+- rebuild for openEuler-23.03 
+
 * Mon Oct 31 2022 yanglongkang <yanglongkang@h-partners.com> - 1.0.8-6
 - license and version print should output to stdout and exit with code
 
