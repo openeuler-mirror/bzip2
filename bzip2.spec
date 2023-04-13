@@ -1,6 +1,6 @@
 Name:		bzip2
 Version:	1.0.8
-Release:	5
+Release:	6
 Summary:	A high-quality data compressor
 
 License:	BSD
@@ -37,12 +37,21 @@ header files for bzip2
 %autosetup -n %{name}-%{version} -p1
 
 %build
+%if "%toolchain" == "clang"
+%make_build -f Makefile-libbz2_so "CFLAGS=%{optflags} -Winline -fpic -fPIC -D_FILE_OFFSET_BITS=64" CC=clang AR=llvm-ar RANLIB=llvm-ranlib
+%make_build "CFLAGS=%{optflags} -fpic -fPIC -Winline -D_FILE_OFFSET_BITS=64" CC=clang AR=llvm-ar RANLIB=llvm-ranlib
+%else
 %make_build -f Makefile-libbz2_so "CFLAGS=%{optflags} -Winline -fpic -fPIC -D_FILE_OFFSET_BITS=64"
 %make_build "CFLAGS=%{optflags} -fpic -fPIC -Winline -D_FILE_OFFSET_BITS=64"
+%endif
 
 %install
 rm -rf %RPM_BUILD_ROOT
+%if "%toolchain" == "clang"
+%make_install PREFIX=%{buildroot}%{_prefix} CC=clang AR=llvm-ar RANLIB=llvm-ranlib
+%else
 %make_install PREFIX=%{buildroot}%{_prefix}
+%endif
 
 # Default install path is /usr/bin lib man, change dest dirs here.
 pushd %{buildroot}%{_prefix}
@@ -90,6 +99,9 @@ make check
 %{_mandir}/man1/b*.1.gz
 
 %changelog
+* Thu Apr 13 2023 Chenxi Mao <chenxi.mao@suse.com> - 1.0.8-6
+- Support build with clang.
+
 * Tue Sep 20 2022 zhoupengcheng <zhoupengcheng11@huawei.com> - 1.0.8-5
 - Delete redundant .so files 
 
